@@ -29,22 +29,22 @@ npm install angular-storage
 
 ````js
 angular.module('app', ['angular-storage'])
-.controller('Controller', function(store) {
+.controller('Controller', function(aiStorage) {
   var myObj = {
     name: 'mgonto'
   };
 
-  store.set('obj', myObj);
+  aiStorage.set('obj', myObj);
 
-  var myNewObject = store.get('obj');
+  var myNewObject = aiStorage.get('obj');
 
   angular.equals(myNewObject, myObj); // return true
 
-  store.remove('obj');
+  aiStorage.remove('obj');
 
-  store.set('number', 2);
+  aiStorage.set('number', 2);
 
-  typeof(store.get('number')) === 'number'
+  typeof(aiStorage.get('number')) === 'number'
 });
 ````
 
@@ -54,8 +54,8 @@ You can also create namespaced storages if you want
 
 ````js
 angular.module('app', ['angular-storage'])
-.factory('Auth0Store', function(store) {
-  return store.getNamespacedStore('auth0');
+.factory('Auth0Store', function(aiStorage) {
+  return aiStorage.getNamespacedStore('auth0');
 })
 .controller('Controller', function(Auth0Store) {
 
@@ -75,21 +75,21 @@ angular.module('app', ['angular-storage'])
 
 ## API
 
-### store.set(name, value)
+### aiStorage.set(name, value)
 
 Sets a new `value` to the storage with the key `name`. It can be any object.
 
-### store.get(name)
+### aiStorage.get(name)
 
 Returns the saved `value` with they key `name`. If you saved an object, you get an object.
 
-### store.remove(name)
+### aiStorage.remove(name)
 
 Deletes the saved `value` with the key `name`
 
-### store.getNamespacedStore(namespace, delimiter)
+### aiStorage.getNamespacedStore(namespace, delimiter)
 
-Returns a new `store` service that will use the `namespace` and `delimiter` when saving and getting values like the following `namespace[delimiter]key`. For example `auth0.object` considering `auth0` as `namespace` and `.` as a `delimiter`
+Returns a new `aiStorage` service that will use the `namespace` and `delimiter` when saving and getting values like the following `namespace[delimiter]key`. For example `auth0.object` considering `auth0` as `namespace` and `.` as a `delimiter`
 
 ## Usages
 
